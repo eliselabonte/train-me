@@ -7,7 +7,10 @@ const exerciseSchema = new Schema({
         type: String,
         trim: true,
         required: "Enter an exercise name."
-    }
+    },
+    workout: [
+        { type: Schema.Types.ObjectId, ref: 'Workout' }
+    ]
 });
 
 const Exercise = mongoose.model("Exercise", exerciseSchema);
