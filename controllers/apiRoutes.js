@@ -3,7 +3,7 @@ const path = require('path');
 const { Workout } = require('../models');
 
 // get request for api/workouts
-router.get('/api/workouts', (req, res) =>    {
+router.get('/api/workouts', async (req, res) =>    {
     try{
         const workouts = await Workout.find({});
         res.json(workouts)
@@ -14,7 +14,7 @@ router.get('/api/workouts', (req, res) =>    {
 });
 
 // get request for /api/workouts/range (limit/sort for last 7)
-router.get('/api/workouts/range', (req, res) =>    {
+router.get('/api/workouts/range', async (req, res) =>    {
     try{
         const workouts = await Workout.find({});
         res.json(workouts)
@@ -25,7 +25,7 @@ router.get('/api/workouts/range', (req, res) =>    {
 });
 
 // put request for api/workouts/:id
-router.put('/api/workouts/:id', (req, res) =>    {
+router.put('/api/workouts/:id', async (req, res) =>    {
     try{
         const workout = await Workout.updateOne({ id:req.params.id })
         .where({ day: req.body.day}, {exercises: req.body.exercises});
@@ -37,7 +37,7 @@ router.put('/api/workouts/:id', (req, res) =>    {
 });
 
 // post request for api/workouts
-router.post('/api/workouts/', (req, res) =>    {
+router.post('/api/workouts/', async (req, res) =>    {
     try{
         const newWorkout = await Workout.updateOne(
             { day: req.body.day }, { exercises: req.body.exercises }, function(err, res) {
